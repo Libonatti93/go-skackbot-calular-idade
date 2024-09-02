@@ -1,0 +1,38 @@
+Slack Age Calculator Bot
+Set up the App in Slack:
+
+Go to the Slack API and create a new app.
+Add permissions to the bot, such as chat:write and commands.
+Set up a "Bot User" and a "Slash Command" (e.g. /age).
+Get the bot token (starts with xoxb-) and add it to your environment as an environment variable or directly in the code (not recommended for production).
+Install Dependencies:
+
+Install the Slack for Golang package:
+go get github.com/slack-go/slack
+
+
+Code Explanation
+Slackbot Configuration: The main function configures an HTTP server that handles Slack events.
+Verification Token: Uses Slack verification tokens to ensure that requests are valid.
+Slash /age Command: The bot responds to the Slack /age command with a date in the format YYYY-MM-DD.
+Age Calculation: The calculateAge function calculates the age based on the date of birth provided by the user.
+
+Configuration and Execution
+Environment Variables:
+
+SLACK_BOT_TOKEN: The Slack bot token (xoxb-...).
+SLACK_VERIFICATION_TOKEN: The Slack verification token for command validation.
+Running the Bot:
+
+Compile the code with go build -o slackbot main.go.
+Run the bot with ./slackbot.
+
+Expose the Bot Locally:
+
+Use a tool like ngrok to expose your local server to Slack:
+ngrok http 3000
+
+Update your Slash Command URL in Slack with the URL provided by ngrok (e.g. https://<ngrok-id>.ngrok.io/slack/events).
+Test in Slack:
+
+Use the command /age 1990-05-20 to see the bot respond with the corresponding age.
